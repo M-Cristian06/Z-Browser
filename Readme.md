@@ -14,7 +14,17 @@ This is an **alpha version** for testing and development.
 - Theme support via QSS
 
 ---
+## Modules 
 
+- **safe_module.py**
+    safe_module.py provides a **SafeWebPage** class for **PyQt6** that adds safer web browsing. It automatically    denies risky permissions like **Camera**, **Microphone**, and **Notifications**, and prompts the user for **LocalStorage** access.
+
+
+
+
+
+
+---
 ## Limitations
 - **FullScreenSupport** ❌ Native HTML5 fullscreen (e.g., YouTube videos) is **not available** due to QWebEngineView limitations.
 

@@ -1,13 +1,17 @@
 import sys
 
 # PyQt6 GUI components
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTabWidget, QWidget, QVBoxLayout, QLineEdit, QToolBar, QHBoxLayout, QLabel, QPushButton
+from PyQt6.QtWidgets import QApplication, QMainWindow, QTabWidget, QWidget, QVBoxLayout, QLineEdit, QToolBar, QHBoxLayout, QLabel, QPushButton, QMessageBox
 from PyQt6.QtGui import QIcon, QAction
 from PyQt6.QtCore import QUrl, QSize
 
 # Browser engine
 from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtWebEngineCore import QWebEngineProfile
 
+
+# Modules Import
+from module.safe_module import SafeWebPage
 
 # MainBrowserWindow
 class BrowserMainWindow(QMainWindow):
@@ -25,12 +29,19 @@ class BrowserMainWindow(QMainWindow):
 # BrowserEngineSetup: Creates and configures the QWebEngineView instance
     def browser_engine(self):
         self.browser = QWebEngineView()
+
+        profile = QWebEngineProfile.defaultProfile()
+        profile.setPersistentCookiesPolicy(QWebEngineProfile.PersistentCookiesPolicy.ForcePersistentCookies)
+        profile.setHttpCacheType(QWebEngineProfile.HttpCacheType.DiskHttpCache)
+        safe_page = SafeWebPage(profile, self.browser)
+        self.browser.setPage(safe_page)
         self.browser.setUrl(QUrl("https://www.google.com"))
-        
+        #Custom UserAgent
         self.browser.page().profile().setHttpUserAgent(
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
         )
         self.setCentralWidget(self.browser)
+        
     def create_tool_bar(self):
         """ Creates the top toolbar with url bar """
         toolbar = QToolBar()
@@ -51,11 +62,9 @@ class BrowserMainWindow(QMainWindow):
         """ Updates the address bar when navigation changes """
         self.url_bar.setText(url.toString())
                 
-
-
-
-
 app = QApplication(sys.argv)
+
+#load/read style file 
 try:
     with open("src/themes/style.qss", "r") as f:
         app.setStyleSheet(f.read())
@@ -65,4 +74,3 @@ except FileNotFoundError:
 window = BrowserMainWindow()
 window.show()
 app.exec()
-
