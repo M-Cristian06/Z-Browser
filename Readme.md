@@ -80,6 +80,7 @@ python main.py
 - Back/Forward/refresh buttons 
 - Bookmarks and history
 - Fullscreen support
+- Integration with the Z-ID Centralized Authentication System, part of the Z-NET Ecosystem, for settings synchronization(**GitHub**: https://github.com/M-Cristian06/Z-ID- )
 
 ## License
 This project is licensed under the MIT License.
