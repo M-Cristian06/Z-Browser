@@ -92,5 +92,4 @@ See the LICENSE file for details.
 - PyQt6-WebEngine
 <<<<<<< HEAD
 
-=======
->>>>>>> bb780b1d4171ee73eefcc5cf88d356da072cc764
+
