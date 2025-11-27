@@ -21,7 +21,8 @@ This is an **alpha version** for testing and development.
 safe_module.py provides a **SafeWebPage** class for **PyQt6** that adds safer web browsing. It automatically    denies risky permissions like **Camera**, **Microphone**, and **Notifications**, and prompts the user for **LocalStorage** access.
 
 - **tabs_module.py**
-    tabs_module.py provides a custom **QTabWidget** for **Z-Browser(PyQt6)** browser. It supports closable tabs, a **‘+’** tab for creating **new tabs**, dynamic tab titles from **webpage titles**, and integration with **SafeWebPage** to ensure safer browsing in each tab. 
+  
+tabs_module.py provides a custom **QTabWidget** for **Z-Browser(PyQt6)** browser. It supports closable tabs, a **‘+’** tab for creating **new tabs**, dynamic tab titles from **webpage titles**, and integration with **SafeWebPage** to ensure safer browsing in each tab. 
 
 
 ---
