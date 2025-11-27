@@ -1,4 +1,4 @@
-# Z-Browser V0.0.1
+# Z-Browser V0.0.2
 **part of Z-NET ECOSYSTEM**
 
 A lightweight browser built with **Python** and **PyQt6**
