@@ -10,7 +10,6 @@ This is an **alpha version** for testing and development.
 
 - Simple, clean interface
 - Url bar navigation 
-- Custom User-Agent
 - Theme support via QSS
 
 ---
