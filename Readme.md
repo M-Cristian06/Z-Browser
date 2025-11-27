@@ -90,6 +90,6 @@ See the LICENSE file for details.
 - Python 3.10+
 - PyQt6
 - PyQt6-WebEngine
-<<<<<<< HEAD
+
 
 
