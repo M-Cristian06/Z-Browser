@@ -19,16 +19,15 @@ This is an **alpha version** for testing and development.
 - **safe_module.py**
     safe_module.py provides a **SafeWebPage** class for **PyQt6** that adds safer web browsing. It automatically    denies risky permissions like **Camera**, **Microphone**, and **Notifications**, and prompts the user for **LocalStorage** access.
 
-
-
-
+- **tabs_module.py**
+    tabs_module.py provides a custom **QTabWidget** for **Z-Browser(PyQt6)** browser. It supports closable tabs, a **‘+’** tab for creating **new tabs**, dynamic tab titles from **webpage titles**, and integration with **SafeWebPage** to ensure safer browsing in each tab. 
 
 
 ---
 ## Limitations
 - **FullScreenSupport** ❌ Native HTML5 fullscreen (e.g., YouTube videos) is **not available** due to QWebEngineView limitations.
 
-- No tabs support yet (planned for future versions)
+- No tabs support yet (**fixed**)
 - No back/forward/refresh buttons (planned for future versions)
 
 ---
@@ -75,7 +74,7 @@ python main.py
 
 ## Future Plans 
 
-- Fully functional tab support 
+- Fully functional tab support (**added** in V0.0.2)
 - Back/Forward/refresh buttons 
 - Bookmarks and history
 - Fullscreen support
@@ -89,3 +88,4 @@ See the LICENSE file for details.
 - Python 3.10+
 - PyQt6
 - PyQt6-WebEngine
+

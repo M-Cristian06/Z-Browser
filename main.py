@@ -1,47 +1,35 @@
+#main.py
+
 import sys
 
 # PyQt6 GUI components
-from PyQt6.QtWidgets import QApplication, QMainWindow, QTabWidget, QWidget, QVBoxLayout, QLineEdit, QToolBar, QHBoxLayout, QLabel, QPushButton, QMessageBox
-from PyQt6.QtGui import QIcon, QAction
-from PyQt6.QtCore import QUrl, QSize
+from PyQt6.QtWidgets import QApplication, QMainWindow, QLineEdit, QToolBar
+from PyQt6.QtGui import QIcon
+from PyQt6.QtCore import QSize, QUrl
 
 # Browser engine
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWebEngineCore import QWebEngineProfile
 
 
-# Modules Import
-from module.safe_module import SafeWebPage
+# Modules import 
+from module.tabs_module import tab # Tabs module import
 
 # MainBrowserWindow
 class BrowserMainWindow(QMainWindow):
     def __init__(self):
         """ Initilizes the entire UI and sets up the main components """    
         super().__init__()
-        self.setWindowTitle("Z-Net Browser V0.0.1")
+        self.setWindowTitle("Z-Net Browser V0.0.2")
         self.resize(QSize(1280, 720))
         self.setWindowIcon(QIcon("src/media/icon.png"))
-        self.tabs = QTabWidget()
-        self.setCentralWidget(self.tabs)
-        self.browser_engine()
+        self.tab = tab()
+        self.setCentralWidget(self.tab)
         self.create_tool_bar()
-        self.browser.urlChanged.connect(self.update_url_bar)
-# BrowserEngineSetup: Creates and configures the QWebEngineView instance
-    def browser_engine(self):
-        self.browser = QWebEngineView()
+        self.tab.currentChanged.connect(self.on_tab_changed)
+        self.on_tab_changed(self.tab.currentIndex())
+    
 
-        profile = QWebEngineProfile.defaultProfile()
-        profile.setPersistentCookiesPolicy(QWebEngineProfile.PersistentCookiesPolicy.ForcePersistentCookies)
-        profile.setHttpCacheType(QWebEngineProfile.HttpCacheType.DiskHttpCache)
-        safe_page = SafeWebPage(profile, self.browser)
-        self.browser.setPage(safe_page)
-        self.browser.setUrl(QUrl("https://www.google.com"))
-        #Custom UserAgent
-        self.browser.page().profile().setHttpUserAgent(
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        )
-        self.setCentralWidget(self.browser)
-        
     def create_tool_bar(self):
         """ Creates the top toolbar with url bar """
         toolbar = QToolBar()
@@ -56,12 +44,25 @@ class BrowserMainWindow(QMainWindow):
         url_text = self.url_bar.text()
         if not url_text.startswith("http"):
             url_text = "https://" + url_text
-        self.browser.setUrl(QUrl(url_text))
+        current_browser = self.tab.currentWidgetBrowser()
+        if current_browser:
+            current_browser.setUrl(QUrl(url_text))
 
     def update_url_bar(self, url):
         """ Updates the address bar when navigation changes """
         self.url_bar.setText(url.toString())
                 
+    def on_tab_changed(self, index):
+        browser = self.tab.currentWidgetBrowser()
+        if browser:
+            try:
+                browser.urlChanged.disconnect()
+            except TypeError:
+                pass
+            browser.urlChanged.connect(self.update_url_bar)
+            self.update_url_bar(browser.url())
+
+
 app = QApplication(sys.argv)
 
 #load/read style file 

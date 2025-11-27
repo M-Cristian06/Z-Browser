@@ -9,6 +9,7 @@ QToolBar {
     padding: 5px;
     border-bottom: 1px solid #333;
     spacing: 8px;
+  
 }
 
 
@@ -19,6 +20,7 @@ QLineEdit {
     border-radius: 8px;               
     padding: 6px;
     font-size: 14px;
+    border-radius: 10px;
 }
 
 QLineEdit:hover {
@@ -56,16 +58,17 @@ QPushButton:hover {
 
 
 QTabWidget::pane {
-    border-top: 1px solid #444;
+    border-top: 1px solid #dcdcdcff;
+    
 }
 
 QTabBar::tab {
-    background: #1f1f1f;
+    background: #0c65a9ff;
     color: #ccc;
     padding: 6px 12px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
-    margin-right: 2px;
+    margin-right: 4px;
 }
 
 QTabBar::tab:selected {
