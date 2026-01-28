@@ -1,7 +1,7 @@
 # Z-Browser V0.0.2
 **part of Z-NET ECOSYSTEM**
 
-A lightweight browser built with **Python** and **PyQt6**
+A lightweight open-source browser built with **Python** and **PyQt6**
 This is an **alpha version** for testing and development.
 
 ---
